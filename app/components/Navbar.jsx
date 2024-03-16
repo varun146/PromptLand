@@ -8,7 +8,6 @@ const Navbar = () => {
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [toggleDropDown, setToggleDropDown] = useState(false);
-  console.log(session);
   useEffect(() => {
     const setUpProviders = async () => {
       const res = await getProviders();
@@ -42,7 +41,7 @@ const Navbar = () => {
             >
               Sign Out
             </button>
-            <Link href="/">
+            <Link href="/profile">
               <Image
                 className="rounded-full"
                 src={session?.user.image}

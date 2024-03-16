@@ -1,3 +1,5 @@
+import Feed from "./components/Feed";
+
 export default function Home() {
   return (
     <div className="w-full flex-center flex-col ">
@@ -7,8 +9,9 @@ export default function Home() {
         <span className="blue_purple_gradient"> AI Prompts</span>{" "}
       </h1>
       <p className="text-center desc">
-        Unleash the Full Potential of ChatGPT with PromptPedia
+        Unleash the Full Potential of ChatGPT with PromptLand
       </p>
+      <Feed />
     </div>
   );
 }
