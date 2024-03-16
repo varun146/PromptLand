@@ -1,18 +1,23 @@
 import Prompt from "@app/models/prompt";
 import { connectToDB } from "@app/utils/database";
-import { ContainerWithChildren } from "postcss/lib/container";
 
 // get request to read one specific prompt
 export const GET = async (req, { params }) => {
   try {
+    console.log("here is the request object: ", req);
     await connectToDB();
     const prompt = await Prompt.findById(params.id).populate("creator");
-    if (!prompt) return new Response("Prompt Not Found", { status: 404 });
-
+    console.log("here is the prompt from database", prompt);
+    if (!prompt) {
+      return new Response("Prompt Not Found", { status: 404 });
+    }
     return new Response(JSON.stringify(prompt), { status: 200 });
   } catch (error) {
-    console.log("Error in api/prompt/[id]");
+    console.log("Error in api/prompt/[id], :::: GET ROUTE");
     console.log(error.message);
+    return Response("Failed to fetch the asked prompt details: ", {
+      status: 500,
+    });
   }
 };
 export const PATCH = async (req, { params }) => {

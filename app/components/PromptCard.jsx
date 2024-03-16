@@ -8,6 +8,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const [copy, setCopy] = useState("");
   const { data: session } = useSession();
   const pathName = usePathname();
+  console.log("Post value in Profile/Prompt Card: ", post);
 
   const handleCopy = () => {
     setCopy(post.prompt);
@@ -60,13 +61,13 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           <div className="mt-5 flex-center gap-4 border-t border-gray-200 pt-3">
             <p
               className="text-sm font-inter text-green-700 cursor-pointer"
-              onClick={handleEdit}
+              onClick={() => handleEdit(post)}
             >
               Edit
             </p>
             <p
               className="text-sm text-red-600 font-inter cursor-pointer"
-              onClick={handleDelete}
+              onClick={() => handleDelete(post)}
             >
               Delete
             </p>

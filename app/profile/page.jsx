@@ -2,10 +2,12 @@
 import Profile from "@app/components/Profile";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const MyProfile = () => {
   const [myposts, setMyPosts] = useState([]);
   const { data: session } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,8 +21,25 @@ const MyProfile = () => {
     }
   }, [session?.user.id]);
 
-  const handleEdit = () => {};
-  const handleDelete = async () => {};
+  const handleEdit = (post) => {
+    router.push(`/update-prompt?id=${post._id}`);
+  };
+  const handleDelete = async (post) => {
+    const hasConfirmed = confirm("Are you sure you want to delete this post?");
+    if (hasConfirmed) {
+      try {
+        const res = await fetch(`/api/prompt/${post._id}`, {
+          method: "DELETE",
+        });
+        if (res.ok) {
+          router.push("/");
+        }
+      } catch (error) {
+        console.log("Error in profile/page.jsx in handleDelete");
+        console.log(error.message);
+      }
+    }
+  };
   return (
     <div className="w-full">
       <Profile
