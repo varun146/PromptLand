@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Navbar = () => {
@@ -35,7 +36,10 @@ const Navbar = () => {
               Create Post
             </Link>
             <button
-              onClick={() => signOut()}
+              onClick={() => {
+                signOut();
+                router.push("/");
+              }}
               className="outline_btn"
               type="button"
             >
@@ -101,6 +105,7 @@ const Navbar = () => {
                   onClick={() => {
                     setToggleDropDown(false);
                     signOut();
+                    router.push("/");
                   }}
                   className="mt-5 w-full black_btn"
                 >

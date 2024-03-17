@@ -2,21 +2,21 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   const [copy, setCopy] = useState("");
   const { data: session } = useSession();
   const pathName = usePathname();
-  console.log("Post value in Profile/Prompt Card: ", post);
 
   const handleCopy = () => {
     setCopy(post.prompt);
     navigator.clipboard.writeText(post.prompt);
     setTimeout(() => setCopy(""), 3000);
   };
+
   return (
-    <div className="prompt_card">
+    <div className="prompt_card shadow-md shadow-gray-400">
       <div className="flex justify-between items-start gap-5">
         <div className="flex-1 flex  justify-start items-start gap-3 cursor-pointer">
           <Image
