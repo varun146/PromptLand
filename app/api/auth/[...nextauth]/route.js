@@ -19,7 +19,7 @@ const handler = NextAuth({
     async signIn({ profile }) {
       try {
         await connectToDB();
-        console.log("I ran...");
+        console.log("Here is profile in api/auth", profile);
         // check if a user already exists
         const userExists = await User.findOne({ email: profile.email });
 
