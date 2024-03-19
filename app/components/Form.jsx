@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 
 const Form = ({ type, submitting, post, setPost, handleSubmit }) => {
-  console.log(post);
   return (
     <section className="w-full max-w-full  flex-start flex-col ">
       <h1 className="head_text text-left">
