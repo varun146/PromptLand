@@ -2,10 +2,9 @@
 
 import Form from "@app/components/Form";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 
 const UpdatePrompt = () => {
-  const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({ prompt: "", tag: "" });
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -22,7 +21,6 @@ const UpdatePrompt = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitting(true);
 
     try {
       console.log(post);
@@ -42,18 +40,19 @@ const UpdatePrompt = () => {
       console.log("Error in update-prompt route/page.jsx");
       console.log(error.message);
     } finally {
-      setSubmitting(false);
     }
   };
   return (
-    <div className="w-full">
-      <Form
-        type="Edit"
-        post={post}
-        setPost={setPost}
-        handleSubmit={handleSubmit}
-      />
-    </div>
+    <Suspense>
+      <div className="w-full">
+        <Form
+          type="Edit"
+          post={post}
+          setPost={setPost}
+          handleSubmit={handleSubmit}
+        />
+      </div>
+    </Suspense>
   );
 };
 
