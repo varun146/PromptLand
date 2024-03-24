@@ -6,9 +6,8 @@ import React, { Suspense, useEffect, useState } from "react";
 
 const UpdatePrompt = () => {
   const [post, setPost] = useState({ prompt: "", tag: "" });
-  const searchParams = useSearchParams();
   const router = useRouter();
-  const promptId = searchParams.get("id");
+  const promptId = router.query.id;
 
   useEffect(() => {
     const fetchPromptData = async () => {
@@ -43,16 +42,16 @@ const UpdatePrompt = () => {
     }
   };
   return (
-    <Suspense>
-      <div className="w-full">
+    <div className="w-full">
+      <Suspense>
         <Form
           type="Edit"
           post={post}
           setPost={setPost}
           handleSubmit={handleSubmit}
         />
-      </div>
-    </Suspense>
+      </Suspense>
+    </div>
   );
 };
 
