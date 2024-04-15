@@ -2,7 +2,7 @@
 
 import Form from "@app/components/Form";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const UpdatePrompt = () => {
   const [post, setPost] = useState({ prompt: "", tag: "" });
@@ -45,14 +45,12 @@ const UpdatePrompt = () => {
   };
   return (
     <div className="w-full">
-      <Suspense>
-        <Form
-          type="Edit"
-          post={post}
-          setPost={setPost}
-          handleSubmit={handleSubmit}
-        />
-      </Suspense>
+      <Form
+        type="Edit"
+        post={post}
+        setPost={setPost}
+        handleSubmit={handleSubmit}
+      />
     </div>
   );
 };
