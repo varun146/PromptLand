@@ -1,7 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { connectToDB } from "@app/utils/database";
-import User from "@app/models/user";
+import { connectToDB } from "@app/utils/database"; import User from "@app/models/user";
 
 const handler = NextAuth({
   providers: [
