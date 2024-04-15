@@ -7,10 +7,7 @@ export const GET = async (req, { params }) => {
     console.log("here is the request object: ", req);
     await connectToDB();
     const prompt = await Prompt.findById(params.id).populate("creator");
-    if (!prompt) {
-      return new Response("Prompt Not Found", { status: 404 });
-    }
-    return new Response(JSON.stringify(prompt), { status: 200 });
+    if (!prompt) { return new Response("Prompt Not Found", { status: 404 }); } return new Response(JSON.stringify(prompt), { status: 200 });
   } catch (error) {
     console.log("Error in api/prompt/[id], :::: GET ROUTE");
     console.log(error.message);

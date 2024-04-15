@@ -6,9 +6,8 @@ import React, { Suspense, useEffect, useState } from "react";
 
 const UpdatePrompt = () => {
   const [post, setPost] = useState({ prompt: "", tag: "" });
-  const router = useRouter();
-  const promptId = router.query.id;
-
+  const searchParams = useSearchParams();
+  const promptId = searchParams.get('id')
   useEffect(() => {
     const fetchPromptData = async () => {
       const res = await fetch(`/api/prompt/${promptId}`);
@@ -39,6 +38,9 @@ const UpdatePrompt = () => {
       console.log("Error in update-prompt route/page.jsx");
       console.log(error.message);
     } finally {
+    }
+    if (!router.query || !router.query.id) {
+      return <div>Loading...</div>; // Or handle the loading state appropriately
     }
   };
   return (
